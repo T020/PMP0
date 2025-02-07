@@ -9,70 +9,72 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
             font-family: Arial, sans-serif;
-            text-align: center;
+            overflow: hidden;
         }
 
-        .video-background {
-            position: absolute;
+        /* Fondo animado */
+        .background {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            background: linear-gradient(-45deg, #000000, #001f3f, #000000, #002b5e);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
             z-index: -1;
         }
 
-        video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            background: black;
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .container {
+        /* Estilo del botón de acceso */
+        .access-container {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1;
+            text-align: center;
         }
 
-        button, input {
-            padding: 10px;
-            font-size: 16px;
+        .access-container button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: rgba(64,179,230,0.5);
+            color: white;
             border: none;
             border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        button {
-            background-color: rgba(64,179,230,0.70);
-            color: white;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: rgba(64,179,230,0.90);
+        .access-container button:hover {
+            background-color: rgba(64,179,230,0.8);
         }
 
+        /* Campo de contraseña oculto */
         #password-container {
             display: none;
+            margin-top: 20px;
         }
 
+        #password {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Formulario oculto */
         #formulario {
             display: none;
-            background: rgba(64,179,230,0.30);
+            background: rgba(64,179,230,0.3);
             padding: 20px;
             border-radius: 10px;
-            width: 50%;
-            max-width: 500px;
+            width: 300px;
             text-align: center;
             position: fixed;
             top: 50%;
@@ -82,61 +84,43 @@
     </style>
 </head>
 <body>
-    <div class="video-background">
-        <video autoplay muted loop>
-            <source src="https://github.com/T020/PMP/raw/refs/heads/main/ParAzul%202.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
-        </video>
-    </div>
+    <div class="background"></div>
 
-    <div class="container">
-        <button id="acceder-btn" onclick="mostrarInput()">Acceder</button>
+    <div class="access-container">
+        <button onclick="showPasswordInput()">Acceder</button>
         <div id="password-container">
-            <input type="password" id="password" placeholder="Ingrese la contraseña">
-            <button onclick="verificarPassword()">Ingresar</button>
+            <input type="password" id="password" placeholder="Ingresa la contraseña">
+            <button onclick="validatePassword()">Entrar</button>
         </div>
     </div>
 
+    <!-- Formulario -->
     <form id="formulario" action="https://formspree.io/f/mqaeakqr" method="POST">
         <h2>Formulario de Inscripción</h2>
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" required><br>
 
-        <label for="apellido">Apellido:</label><br>
-        <input type="text" id="apellido" name="apellido" required><br>
-
         <label for="email">Correo Electrónico:</label><br>
         <input type="email" id="email" name="email" required><br>
-
-        <label for="genero">Género:</label><br>
-        <select id="genero" name="genero" required>
-            <option value="">Selecciona una opción</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
-        </select><br>
-
-        <label for="fecha">Fecha de Nacimiento:</label><br>
-        <input type="date" id="fecha" name="fecha" required><br>
 
         <button type="submit">Enviar</button>
     </form>
 
     <script>
-        function mostrarInput() {
-            document.getElementById("acceder-btn").style.display = "none";
+        function showPasswordInput() {
             document.getElementById("password-container").style.display = "block";
         }
 
-        function verificarPassword() {
+        function validatePassword() {
             var password = document.getElementById("password").value;
             if (password === "PokerMindPro") {
-                document.getElementById("password-container").style.display = "none";
                 document.getElementById("formulario").style.display = "block";
+                document.querySelector(".access-container").style.display = "none";
             } else {
-                alert("Contraseña incorrecta. Inténtelo de nuevo.");
+                alert("Contraseña incorrecta");
             }
         }
     </script>
 </body>
 </html>
+

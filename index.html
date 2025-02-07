@@ -9,147 +9,142 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: Arial, sans-serif;
             overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: url('A_looping_abstract_animation_with_a_mysterious_the.png') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        /* Fondo animado */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #000000, #001f3f, #000000, #002b5e);
-            background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Estilo del botón de acceso */
-        .access-container {
+        .button-container {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
+            z-index: 1;
         }
 
-        .access-container button {
-            padding: 10px 25px;
-            font-size: 16px;
-            background-color: rgba(64,179,230,0.5);
+        .access-button {
+            padding: 10px 30px;
+            background-color: rgba(10, 10, 10, 0.7);
             color: white;
-            border: 1px solid white;
-            border-radius: 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 14px;
         }
 
-        .access-container button:hover {
-            background-color: rgba(64,179,230,0.8);
+        .access-button:hover {
+            background-color: rgba(10, 10, 10, 0.9);
         }
 
-        /* Campo de contraseña oculto */
-        #password-container {
+        .password-container {
             display: none;
+            text-align: center;
             margin-top: 20px;
         }
 
-        #password {
+        .password-input {
+            background-color: rgba(50, 50, 50, 0.7);
+            color: white;
+            border: none;
             padding: 10px;
-            font-size: 16px;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            font-size: 16px;
+            text-align: center;
         }
 
-        /* Formulario estilizado */
-        #formulario {
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .submit-button {
+            padding: 8px 20px;
+            background-color: rgba(10, 10, 10, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: rgba(10, 10, 10, 0.9);
+        }
+
+        form {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 20px;
+            border-radius: 10px;
             display: none;
-            background: rgba(64,179,230,0.3);
-            padding: 30px;
-            border-radius: 15px;
-            width: 350px;
+            width: 50%;
+            max-width: 400px;
             text-align: center;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-        }
-
-        #formulario h2 {
-            margin-bottom: 20px;
             color: white;
         }
 
-        #formulario input {
-            width: 90%;
+        form input {
+            margin: 10px auto;
             padding: 12px;
-            margin: 10px 0;
-            border: 1px solid white;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            width: 80%;
+            border: none;
+            border-radius: 5px;
             font-size: 16px;
+            background-color: rgba(50, 50, 50, 0.7);
+            color: white;
         }
 
-        #formulario input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        #formulario button {
-            padding: 10px 30px;
-            font-size: 16px;
-            background-color: rgba(64,179,230,0.8);
+        form button {
+            padding: 8px 20px;
+            background-color: rgba(10, 10, 10, 0.7);
             color: white;
-            border: 1px solid white;
-            border-radius: 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 12px;
+            margin-top: 10px;
         }
 
-        #formulario button:hover {
-            background-color: rgba(64,179,230,1);
+        form button:hover {
+            background-color: rgba(10, 10, 10, 0.9);
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-
-    <div class="access-container">
-        <button onclick="showPasswordInput()">Acceder</button>
-        <div id="password-container">
-            <input type="password" id="password" placeholder="Ingresa la contraseña">
-            <button onclick="validatePassword()">Entrar</button>
+    <div class="button-container">
+        <button class="access-button" onclick="showPasswordField()">Acceder</button>
+        <div class="password-container" id="password-container">
+            <input type="password" class="password-input" id="password" placeholder="Ingrese contraseña">
+            <button class="submit-button" onclick="validatePassword()">Ingresar</button>
         </div>
     </div>
 
-    <!-- Formulario -->
-    <form id="formulario" action="https://formspree.io/f/mqaeakqr" method="POST">
+    <form id="formulario" action="#" method="POST">
         <h2>Formulario de Inscripción</h2>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required><br>
-        <input type="text" id="referido" name="referido" placeholder="Referido por" required><br>
-        <input type="email" id="email" name="email" placeholder="Correo electrónico" required><br>
+        <input type="text" id="nombre-completo" name="nombre-completo" placeholder="Nombre completo" required><br>
+        <input type="text" id="referido-por" name="referido-por" placeholder="Referido por" required><br>
+        <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required><br>
         <button type="submit">Enviar</button>
     </form>
 
     <script>
-        function showPasswordInput() {
+        function showPasswordField() {
             document.getElementById("password-container").style.display = "block";
         }
 
         function validatePassword() {
             var password = document.getElementById("password").value;
             if (password === "PokerMindPro") {
+                document.getElementById("password-container").style.display = "none";
                 document.getElementById("formulario").style.display = "block";
-                document.querySelector(".access-container").style.display = "none";
             } else {
                 alert("Contraseña incorrecta");
             }
@@ -157,5 +152,3 @@
     </script>
 </body>
 </html>
-
-

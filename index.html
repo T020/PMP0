@@ -42,13 +42,14 @@
         }
 
         .access-container button {
-            padding: 12px 30px;
-            font-size: 18px;
+            padding: 10px 25px;
+            font-size: 16px;
             background-color: rgba(64,179,230,0.5);
             color: white;
-            border: none;
-            border-radius: 5px;
+            border: 1px solid white;
+            border-radius: 20px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .access-container button:hover {
@@ -68,18 +69,54 @@
             border: 1px solid #ccc;
         }
 
-        /* Formulario oculto */
+        /* Formulario estilizado */
         #formulario {
             display: none;
             background: rgba(64,179,230,0.3);
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
             text-align: center;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        #formulario h2 {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        #formulario input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid white;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+        }
+
+        #formulario input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #formulario button {
+            padding: 10px 30px;
+            font-size: 16px;
+            background-color: rgba(64,179,230,0.8);
+            color: white;
+            border: 1px solid white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #formulario button:hover {
+            background-color: rgba(64,179,230,1);
         }
     </style>
 </head>
@@ -97,12 +134,9 @@
     <!-- Formulario -->
     <form id="formulario" action="https://formspree.io/f/mqaeakqr" method="POST">
         <h2>Formulario de Inscripción</h2>
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br>
-
-        <label for="email">Correo Electrónico:</label><br>
-        <input type="email" id="email" name="email" required><br>
-
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required><br>
+        <input type="text" id="referido" name="referido" placeholder="Referido por" required><br>
+        <input type="email" id="email" name="email" placeholder="Correo electrónico" required><br>
         <button type="submit">Enviar</button>
     </form>
 
@@ -123,4 +157,5 @@
     </script>
 </body>
 </html>
+
 
